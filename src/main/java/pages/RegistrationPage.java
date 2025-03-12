@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,17 +9,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class RegistrationPage {
-    private WebDriver driver;
 
-    // локатор поля ввода "Email" по XPATH, поиск по плейсхолдеру
+    private WebDriver driver;
+    // локатор поля ввода "Email" по XPATH
     public static final By EMAIL = By.xpath(".//div[label[text() = 'Email']]/input");
-    // локатор поля ввода "Пароль" по XPATH, поиск по плейсхолдеру
+    // локатор поля ввода "Пароль" по XPATH
     public static final By PASSWORD = By.xpath(".//div[label[text() = 'Пароль']]/input");
-    // локатор поля ввода "Пароль" по XPATH, поиск по плейсхолдеру
+    // локатор поля ввода "Пароль" по XPATH
     public static final By NAME = By.xpath(".//div[label[text() = 'Имя']]/input");
     // локатор кнопки регистрации с названием "Зарегистрироваться"
     private static final By REGISTRATION_BUTTON = By.xpath(".//button[text() = 'Зарегистрироваться']");
-    // локатор кнопки авторизации с названием "Войти"
+    // локатор кнопки авторизации с названием "Войти" на странице авторизации
     private static final By ENTER_BUTTON = By.xpath(".//button[text() = 'Войти']");
     // локатор кнопки авторизации с названием "Войти" на старнице регистрации
     private static final By ENTER_BUTTON_ON_REGISTRATION = By.xpath(".//a[text() = 'Войти']");
@@ -29,7 +30,7 @@ public class RegistrationPage {
         this.driver = driver;
     }
 
-    // заполнение окна регистрации пользователя
+    @Step("Заполнение окна регистрации пользователя")
     public void setRegistrationData(String name, String email, String password) {
         driver.findElement(NAME).sendKeys(name);
         driver.findElement(EMAIL).sendKeys(email);
@@ -59,19 +60,12 @@ public class RegistrationPage {
         driver.findElement(ENTER_BUTTON_ON_REGISTRATION).click();
     }
 
-    // заполнение окна аутентификации пользователя
-    public void tapToEnterButton(String email, String password) {
-        driver.findElement(EMAIL).sendKeys(email);
-        driver.findElement(PASSWORD).sendKeys(password);
-        driver.findElement(ENTER_BUTTON).click();
-    }
-
-    // проверка отображение кнопки "Войти" в форме авторизации
+    @Step("Проверка отображение кнопки \"Войти\" в форме авторизации")
     public String getWindowAuth() {
         return driver.findElement(ENTER_BUTTON).getText();
     }
 
-    // получение текста ошибки
+    @Step("Получение текста ошибки")
     public String getErrorTextRegistration() {
         return driver.findElement(ERROR_REGISTRATION).getText();
     }

@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.DeleteUser;
+import pages.SupportUser;
 import pages.RegistrationPage;
 
 import java.util.concurrent.TimeUnit;
@@ -24,12 +24,12 @@ import static org.junit.Assert.assertEquals;
 public class TestRegistration extends BaseTest {
 
     private WebDriver driver;
-    DeleteUser deleteUser = new DeleteUser();
+    private SupportUser supportUser = new SupportUser();
     private String name;
     private String email;
     private String password;
     private String accessToken;
-    RegistrationPage registrationPage;
+    private RegistrationPage registrationPage;
 
     public TestRegistration(String name, String email, String password) {
         this.name = name;
@@ -84,10 +84,10 @@ public class TestRegistration extends BaseTest {
         // закрытие браузера
         this.driver.quit();
         // достаём accessToken пользователя и удаляем пользователя из БД
-        Response responseUser = deleteUser.loginUser(new UserJSON(name, password, email));
+        Response responseUser = supportUser.loginUser(new UserJSON(name, password, email));
         accessToken = responseUser.path("accessToken");
         if (accessToken != null) {
-            deleteUser.deleteUser(accessToken);
+            supportUser.deleteUser(accessToken);
         } else {
             System.out.println("User is null !");
         }
