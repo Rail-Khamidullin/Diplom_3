@@ -19,7 +19,7 @@ public class SupportUser {
     public static final String DATE_API = "/api/auth/user";
 
     @Step("Создание пользователя")
-    public Response createUser(UserJSON userJSON) {
+    public String createUser(UserJSON userJSON) {
 
         Response response = given()
                 .header("Content-type", "application/json")
@@ -27,7 +27,7 @@ public class SupportUser {
                 .body(userJSON)
                 .when()
                 .post(CREATE_USER_API);
-        return response;
+        return response.path("accessToken");
     }
 
     @Step("Авторизация пользователя")

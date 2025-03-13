@@ -55,12 +55,12 @@ public class RegistrationPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(ENTER_BUTTON));
     }
 
-    // выбор кнопку "Войти" в форме авторизации
+    // выбор кнопки "Войти" в форме авторизации
     public void tapToEnterOnRegistration() {
         driver.findElement(ENTER_BUTTON_ON_REGISTRATION).click();
     }
 
-    @Step("Проверка отображение кнопки \"Войти\" в форме авторизации")
+    @Step("Проверка отображение кнопки 'Войти' в форме авторизации")
     public String getWindowAuth() {
         return driver.findElement(ENTER_BUTTON).getText();
     }

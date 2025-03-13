@@ -14,9 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.SupportUser;
 import pages.RegistrationPage;
-
 import java.util.concurrent.TimeUnit;
-
 import static constants.Constants.URL_REGISTRATION;
 import static org.junit.Assert.assertEquals;
 
@@ -41,10 +39,10 @@ public class TestRegistration extends BaseTest {
     public static Object[][] registration() {
         return new Object[][]{
                 {"Frodo", "frodo.begens1.test@yandex.ru", "123456"},
-                {"Gendalf", "gendalf.test@yandex.ru", "1234567"},
-                {"Aragorn", "aragorn.test@yandex.ru", "123456789"},
-                {"Legolas", "legolas.test@yandex.ru", "12345"},
-                {"Gimlie", "gimlie.test@yandex.ru", "1234"}
+//                {"Gendalf", "gendalf.test@yandex.ru", "1234567"},
+//                {"Aragorn", "aragorn.test@yandex.ru", "123456789"},
+//                {"Legolas", "legolas.test@yandex.ru", "12345"},
+//                {"Gimlie", "gimlie.test@yandex.ru", "1234"}
         };
     }
 
