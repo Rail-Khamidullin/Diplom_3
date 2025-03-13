@@ -34,7 +34,6 @@ public class TestEnter extends BaseTest {
     public void startUp() {
         setUp();
         accessToken = supportUser.createUser(new UserJSON(name, password, email));
-        System.out.println(accessToken);
         WebDriverManager.chromedriver().setup();
         // Создаём драйвер для браузера Chrome и устанавливаем размер окна
         driver = new ChromeDriver();
