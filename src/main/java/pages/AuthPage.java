@@ -15,8 +15,6 @@ public class AuthPage {
     public static final By EMAIL = By.xpath(".//div[label[text() = 'Email']]/input");
     // локатор поля ввода "Пароль" по XPATH
     public static final By PASSWORD = By.xpath(".//div[label[text() = 'Пароль']]/input");
-    // локатор кнопки "Восстановить пароль"
-    public static final By RECOVER_PASSWORD = By.xpath(".//a[text() = 'Восстановить пароль']");
 
     public AuthPage(WebDriver driver) {
         this.driver = driver;
@@ -28,5 +26,10 @@ public class AuthPage {
         driver.findElement(EMAIL).sendKeys(email);
         driver.findElement(PASSWORD).sendKeys(password);
         driver.findElement(ENTER_BUTTON).click();
+    }
+
+    @Step("Проверка отображение кнопки 'Войти'")
+    public String getEnterButtonText() {
+        return driver.findElement(ENTER_BUTTON).getText();
     }
 }

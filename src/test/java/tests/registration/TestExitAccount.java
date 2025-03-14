@@ -12,17 +12,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AuthPage;
 import pages.MainPage;
+import pages.PersonalAccountPage;
 import support.SupportUser;
-
 import java.util.concurrent.TimeUnit;
 
 import static constants.Constants.URL_AUTH_WINDOW;
 import static org.junit.Assert.assertEquals;
 
-public class TestSwitchConstructor extends BaseTest {
+public class TestExitAccount extends BaseTest {
 
     // зависимости
     private SupportUser supportUser = new SupportUser();
+    private PersonalAccountPage personalAccountPage;
     private WebDriver driver;
     private AuthPage authPage;
     private MainPage mainPage;
@@ -48,17 +49,18 @@ public class TestSwitchConstructor extends BaseTest {
     }
 
     @Test
-    @DisplayName("Переход из «Личный кабинет» в Конструктор")
-    @Description("Переход по клику на «Конструктор» и отображение поля 'Соберите бургер'")
+    @DisplayName("Выход из «Личный кабинет»")
+    @Description("Выход из личного кабинета и проверка отображения кнопки 'Войти'")
     public void byMainWindowTest() {
+        personalAccountPage = new PersonalAccountPage(driver);
         mainPage = new MainPage(driver);
         // переход в личный кабинет
         mainPage.tapPersonalAccount();
-        // переход по клику на «Конструктор» из Личного кабинета
-        mainPage.openConstructor();
+        // выход из Личного кабинета
+        personalAccountPage.tapExitButton();
         // проверяем, что переход совершён правильно
-        String actualText = mainPage.getConstructorName();
-        assertEquals("Текст заголовка должен быть 'Соберите бургер'", "Соберите бургер", actualText);
+        String actualText = authPage.getEnterButtonText();
+        assertEquals("Текст кнопки должен быть 'Войти'", "Войти", actualText);
     }
 
     @After

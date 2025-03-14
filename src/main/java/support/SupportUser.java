@@ -42,6 +42,7 @@ public class SupportUser {
         return response;
     }
 
+    // удаление пользователя
     public void deleteUser(String accessToken) {
         Response response = given()
                 .header("authorization", accessToken)
