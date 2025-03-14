@@ -13,6 +13,8 @@ public class MainPage {
     public static final By CONSTRUCTOR_NAME = By.xpath(".//h1[text() = 'Соберите бургер']");
     // локатор заголовка "Личный Кабинет" по XPATH
     public static final By PERSONAL_ACCOUNT = By.xpath(".//p[text() = 'Личный Кабинет']");
+    // локатор кнопки "Конструктор"
+    private static final By CONSTRUCTOR = By.xpath(".//p[text()= 'Конструктор']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -31,5 +33,10 @@ public class MainPage {
     @Step("Вход через главную страницу")
     public void tapPersonalAccount() {
         driver.findElement(PERSONAL_ACCOUNT).click();
+    }
+
+    @Step("Переход в раздел 'Конструктор'")
+    public void openConstructor() {
+        driver.findElement(CONSTRUCTOR).click();
     }
 }

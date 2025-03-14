@@ -12,20 +12,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AuthPage;
 import pages.MainPage;
-import pages.PersonalAccauntPage;
-import pages.SupportUser;
+import support.SupportUser;
 import java.util.concurrent.TimeUnit;
 import static constants.Constants.URL_AUTH_WINDOW;
 import static org.junit.Assert.assertEquals;
 
-public class TestPersonalAccount extends BaseTest {
+public class TestSwitchConstructor extends BaseTest  {
 
     // зависимости
     private SupportUser supportUser = new SupportUser();
-    private PersonalAccauntPage personalAccountPage;
-    private MainPage mainPage;
     private WebDriver driver;
     private AuthPage authPage;
+    private MainPage mainPage;
 
     // креды пользователя
     private String name = "Frodo";
@@ -48,15 +46,17 @@ public class TestPersonalAccount extends BaseTest {
     }
 
     @Test
-    @DisplayName("Переход по клику на «Личный кабинет»")
-    @Description("Переход по клику на «Личный кабинет» и отображение поля 'Профиль'")
+    @DisplayName("Переход из «Личный кабинет» в Конструктор")
+    @Description("Переход по клику на «Конструктор» и отображение поля 'Соберите бургер'")
     public void byMainWindowTest() {
-        personalAccountPage = new PersonalAccauntPage(driver);
         mainPage = new MainPage(driver);
+        // переход в личный кабинет
         mainPage.tapPersonalAccount();
-        // переход по клику на «Личный кабинет» и проверка текста поля "Профиль"
-        String actualText = personalAccountPage.getProfileText();
-        assertEquals("Текст поля должен быть 'Профиль'", "Профиль", actualText);
+        // переход по клику на «Конструктор» из Личного кабинета
+        mainPage.openConstructor();
+        // проверяем, что переход совершён правильно
+        String actualText = mainPage.getConstructorName();
+        assertEquals("Текст заголовка должен быть 'Соберите бургер'", "Соберите бургер", actualText);
     }
 
     @After

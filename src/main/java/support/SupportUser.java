@@ -1,4 +1,4 @@
-package pages;
+package support;
 
 import api.UserJSON;
 import io.qameta.allure.Step;

@@ -11,6 +11,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.*;
+import support.SupportUser;
+
 import java.util.concurrent.TimeUnit;
 import static constants.Constants.*;
 import static org.junit.Assert.assertEquals;

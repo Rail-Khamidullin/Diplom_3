@@ -4,13 +4,13 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PersonalAccauntPage {
+public class PersonalAccountPage {
 
     private WebDriver driver;
     // локатор отображающий текст ошибки при регистрации
     private static final By PROFILE = By.xpath(".//a[text()= 'Профиль']");
 
-    public PersonalAccauntPage(WebDriver driver) {
+    public PersonalAccountPage(WebDriver driver) {
         this.driver = driver;
     }
 

@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.SupportUser;
+import support.SupportUser;
 import pages.RegistrationPage;
 import java.util.concurrent.TimeUnit;
 import static constants.Constants.URL_REGISTRATION;
