@@ -9,7 +9,7 @@ public class AuthPage {
 
     private WebDriver driver;
 
-    // локатор кнопки авторизации с названием "Войти" на странице авторизации
+    // локатор кнопки с текстом "Войти" на странице авторизации
     private static final By ENTER_BUTTON = By.xpath(".//button[text() = 'Войти']");
     // локатор поля ввода "Email" по XPATH
     public static final By EMAIL = By.xpath(".//div[label[text() = 'Email']]/input");

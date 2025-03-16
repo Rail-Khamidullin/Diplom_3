@@ -13,18 +13,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AuthPage;
 import pages.MainPage;
 import support.SupportUser;
-
 import java.util.concurrent.TimeUnit;
-
 import static constants.Constants.URL_AUTH_WINDOW;
 import static org.junit.Assert.assertEquals;
 
-public class TestSwitchConstructor extends BaseTest {
+public class TestSwitch extends BaseTest {
 
     // зависимости
     private SupportUser supportUser = new SupportUser();
-    private WebDriver driver;
     private AuthPage authPage;
+    private WebDriver driver;
     private MainPage mainPage;
 
     // креды пользователя
@@ -43,36 +41,40 @@ public class TestSwitchConstructor extends BaseTest {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1160, 800));
         driver.get(URL_AUTH_WINDOW);
+    }
+
+    @Test
+    @DisplayName("Переход к разделу 'Булки'")
+    @Description("Проверка работы перехода к разделу «Булки» на главной")
+    public void switchBurgersTest() {
         authPage = new AuthPage(driver);
+        mainPage = new MainPage(driver);
         authPage.authentication(email, password);
+        mainPage.clickSauces();
+        String actualText = mainPage.switchBurgers();
+        assertEquals("Текст заголовка должен быть 'Булки'", "Булки", actualText);
     }
 
     @Test
-    @DisplayName("Переход из «Личный кабинет» в Конструктор")
-    @Description("Переход по клику на «Конструктор» и отображение поля 'Соберите бургер'")
-    public void switchConstructorTest() {
+    @DisplayName("Переход к разделу 'Соусы'")
+    @Description("Проверка работы перехода к разделу «Соусы» на главной")
+    public void switchSaucesTest() {
+        authPage = new AuthPage(driver);
         mainPage = new MainPage(driver);
-        // переход в личный кабинет
-        mainPage.tapPersonalAccount();
-        // переход по клику на «Конструктор» из Личного кабинета
-        mainPage.tapConstructor();
-        // проверяем, что переход совершён правильно
-        String actualText = mainPage.getConstructorName();
-        assertEquals("Текст заголовка должен быть 'Соберите бургер'", "Соберите бургер", actualText);
+        authPage.authentication(email, password);
+        String actualText = mainPage.switchSauces();
+        assertEquals("Текст заголовка должен быть 'Соусы'", "Соусы", actualText);
     }
 
     @Test
-    @DisplayName("Переход из «Личный кабинет» в Конструктор")
-    @Description("Переход по клику на «Конструктор» и отображение поля 'Соберите бургер'")
-    public void switchStellarTest() {
+    @DisplayName("Переход к разделу 'Начинки'")
+    @Description("Проверка работы перехода к разделу «Начинки» на главной")
+    public void switchToppingsTest() {
+        authPage = new AuthPage(driver);
         mainPage = new MainPage(driver);
-        // переход в личный кабинет
-        mainPage.tapPersonalAccount();
-        // переход по клику на «Конструктор» из Личного кабинета
-        mainPage.tapStellar();
-        // проверяем, что переход совершён правильно
-        String actualText = mainPage.getConstructorName();
-        assertEquals("Текст заголовка должен быть 'Соберите бургер'", "Соберите бургер", actualText);
+        authPage.authentication(email, password);
+        String actualText = mainPage.switchToppings();
+        assertEquals("Текст заголовка должен быть 'Начинки'", "Начинки", actualText);
     }
 
     @After
