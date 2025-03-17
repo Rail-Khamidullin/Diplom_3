@@ -29,7 +29,7 @@ public class TestExitAccount extends BaseTest {
 
     // креды пользователя
     private String name = "Frodo";
-    private String email = "frodo.begens1.test@yandex.ru";
+    private String email = "frodo.begens.test@yandex.ru";
     private String password = "123456";
     private String accessToken;
 
