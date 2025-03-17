@@ -73,9 +73,9 @@ public class MainPage {
         return driver.findElement(SWITCH_TO_SAUCES).getText();
     }
 
-    @Step("Скролл до раздела 'Соусы'")
-    public void clickSauces() {
-        driver.findElement(SAUCES).click();
+    @Step("Скролл до раздела 'Начинки'")
+    public void clickToppings() {
+        driver.findElement(TOPPINGS).click();
     }
 
     @Step("Переход к разделу 'Начинки'")

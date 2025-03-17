@@ -3,13 +3,9 @@ package support;
 import api.UserJSON;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-
 import static io.restassured.RestAssured.given;
 
 public class SupportUser {
-
-    // Создаём экземпляр класса с телом запроса
-    private UserJSON userJSON;
 
     // Endpoint создания пользователя
     public static final String CREATE_USER_API = "/api/auth/register";

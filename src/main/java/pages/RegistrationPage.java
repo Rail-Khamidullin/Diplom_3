@@ -38,11 +38,6 @@ public class RegistrationPage {
         driver.findElement(REGISTRATION_BUTTON).click();
     }
 
-    // проверка отображения ошибки в окне регистрации
-//    public boolean isVisibleError() {
-//        return driver.findElement(ERROR_REGISTRATION).isDisplayed();
-//    }
-
     // ожидание отображения элемента
     public void waitRegistrationPage() {
         new WebDriverWait(driver, Duration.ofSeconds(3))
@@ -55,13 +50,14 @@ public class RegistrationPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(ENTER_BUTTON));
     }
 
-    // выбор кнопки "Войти" в форме авторизации
+    // выбор кнопки "Войти" в форме регистрации
     public void tapToEnterOnRegistration() {
         driver.findElement(ENTER_BUTTON_ON_REGISTRATION).click();
     }
 
     @Step("Проверка отображение кнопки 'Войти' в форме авторизации")
     public String getWindowAuth() {
+        waitAuthPage();
         return driver.findElement(ENTER_BUTTON).getText();
     }
 

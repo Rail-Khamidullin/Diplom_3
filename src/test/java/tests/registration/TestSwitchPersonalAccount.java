@@ -1,20 +1,19 @@
 package tests.registration;
 
 import api.UserJSON;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import browser.WebDriverFactory;
 import io.qameta.allure.junit4.DisplayName;
 import jdk.jfr.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AuthPage;
 import pages.MainPage;
 import pages.PersonalAccountPage;
 import support.SupportUser;
 import java.util.concurrent.TimeUnit;
+import static browser.WebDriverFactory.BrowserName.CHROME;
 import static constants.Constants.URL_AUTH_WINDOW;
 import static org.junit.Assert.assertEquals;
 
@@ -37,11 +36,9 @@ public class TestSwitchPersonalAccount extends BaseTest {
     public void startUp() {
         setUp();
         accessToken = supportUser.createUser(new UserJSON(name, password, email));
-        WebDriverManager.chromedriver().setup();
-        // Создаём драйвер для браузера Chrome и устанавливаем размер окна
-        driver = new ChromeDriver();
+        driver = WebDriverFactory.createDriver(CHROME);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        driver.manage().window().setSize(new Dimension(1160, 800));
+        driver.manage().window().maximize();
         driver.get(URL_AUTH_WINDOW);
         authPage = new AuthPage(driver);
         authPage.authentication(email, password);

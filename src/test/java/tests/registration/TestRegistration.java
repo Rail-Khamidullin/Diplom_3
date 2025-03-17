@@ -1,7 +1,7 @@
 package tests.registration;
 
 import api.UserJSON;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import browser.WebDriverFactory;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import jdk.jfr.Description;
@@ -11,10 +11,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import support.SupportUser;
 import pages.RegistrationPage;
+
 import java.util.concurrent.TimeUnit;
+
+import static browser.WebDriverFactory.BrowserName.CHROME;
 import static constants.Constants.URL_REGISTRATION;
 import static org.junit.Assert.assertEquals;
 
@@ -38,21 +40,21 @@ public class TestRegistration extends BaseTest {
     @Parameterized.Parameters
     public static Object[][] registration() {
         return new Object[][]{
-                {"Frodo", "frodo.begens1.test@yandex.ru", "123456"},
-//                {"Gendalf", "gendalf.test@yandex.ru", "1234567"},
-//                {"Aragorn", "aragorn.test@yandex.ru", "123456789"},
-//                {"Legolas", "legolas.test@yandex.ru", "12345"},
-//                {"Gimlie", "gimlie.test@yandex.ru", "1234"}
+                {"Frodo", "frodo.begens.test@yandex.ru", "123456"},
+                {"Gendalf", "gendalf.test@yandex.ru", "1234567"},
+                {"Aragorn", "aragorn.test@yandex.ru", "123456789"},
+                {"Legolas", "legolas.test@yandex.ru", "12345"},
+                {"Gimlie", "gimlie.test@yandex.ru", "1234"}
         };
     }
 
     @Before
     public void startUp() {
-        WebDriverManager.chromedriver().setup();
         setUp();
-        // Создаём драйвер для браузера Chrome
-        driver = new ChromeDriver();
+        // Создаём драйвер для браузера
+        driver = WebDriverFactory.createDriver(CHROME);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get(URL_REGISTRATION);
     }
 
