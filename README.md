@@ -10,9 +10,9 @@ rest-assured 4.4.0
 java 11
 maven-4.0.0
 
-## Документация к тестируемому API
+## Тестируемый сайт
 
-https://qa-scooter.praktikum-services.ru/docs/#api-Courier-Login
+https://stellarburgers.nomoreparties.site/
 
 ## Команды
 
